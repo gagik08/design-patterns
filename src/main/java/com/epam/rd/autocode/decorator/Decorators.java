@@ -9,13 +9,13 @@ public class Decorators {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     private static class EvenIndexElementsSubListDecorator<T> extends AbstractList<T> {
