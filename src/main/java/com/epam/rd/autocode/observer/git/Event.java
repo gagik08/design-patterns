@@ -5,18 +5,14 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public class Event {
-    private Type type;
-    private String branch;
-    private List<Commit> commits;
+    private final Type type;
+    private final String branch;
+    private final List<Commit> commits;
 
     public Event(final Type type, final String branch, final List<Commit> commits) {
         this.type = type;
         this.branch = branch;
-        if (commits != null) {
-            this.commits = commits;
-        } else {
-            this.commits = List.of();
-        }
+        this.commits = Objects.requireNonNullElseGet(commits, List::of);
     }
 
     Type type() {

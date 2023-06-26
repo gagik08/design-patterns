@@ -1,14 +1,11 @@
 package com.epam.rd.autocode.observer.git;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class GitRepository implements Repository {
-    private List<Event> events = new ArrayList<>();
-    private List<WebHook> webHooks = new ArrayList<>();
+    private final List<Event> events = new ArrayList<>();
+    private final List<WebHook> webHooks = new ArrayList<>();
 
     @Override
     public void addWebHook(WebHook webHook) {

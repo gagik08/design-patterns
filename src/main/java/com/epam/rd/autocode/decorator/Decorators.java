@@ -13,6 +13,11 @@ public class Decorators {
         return super.equals(obj);
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     private static class EvenIndexElementsSubListDecorator<T> extends AbstractList<T> {
         private final List<T> sourceList;
 

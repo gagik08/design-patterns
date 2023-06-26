@@ -4,6 +4,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Iterators {
+    private Iterators() {
+        // Private constructor to hide the implicit public one
+    }
 
     public static Iterator<Integer> intArrayTwoTimesIterator(final int[] array) {
         return new TwoTimesIterator(array);

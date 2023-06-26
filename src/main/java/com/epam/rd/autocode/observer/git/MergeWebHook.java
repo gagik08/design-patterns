@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MergeWebHook implements WebHook {
-    private String branch;
-    private List<Event> caughtEvents = new ArrayList<>();
+    private final String branch;
+    private final List<Event> caughtEvents = new ArrayList<>();
 
     public MergeWebHook(String branch) {
         this.branch = branch;

@@ -5,8 +5,8 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public class Commit{
-    private String author;
-    private String[] changes;
+    private final String author;
+    private final String[] changes;
 
     public Commit(final String author, final String[] changes) {
         this.author = author;

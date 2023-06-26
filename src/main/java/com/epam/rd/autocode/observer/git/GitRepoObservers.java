@@ -1,6 +1,9 @@
 package com.epam.rd.autocode.observer.git;
 
 public class GitRepoObservers {
+    private GitRepoObservers() {
+        // Private constructor to hide the implicit public one
+    }
     public static Repository newRepository() {
         return new GitRepository();
     }

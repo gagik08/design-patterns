@@ -19,9 +19,8 @@ public class IteratorsTest {
         testCase2IntIterator(new int[]{}, "[]");
         testCase2IntIterator(new int[]{1, 1, 1, 1, 0, 1}, "[1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1]");
 
-        assertThrows(
-                NoSuchElementException.class,
-                () -> Iterators.intArrayTwoTimesIterator(new int[]{}).next());
+        final Iterator<Integer> emptyIterator = Iterators.intArrayTwoTimesIterator(new int[]{});
+        assertThrows(NoSuchElementException.class, emptyIterator::next);
 
         final Iterator<Integer> itr = Iterators.intArrayTwoTimesIterator(new int[]{1});
         itr.next();
@@ -36,9 +35,8 @@ public class IteratorsTest {
         testCase3IntIterator(new int[]{}, "[]");
         testCase3IntIterator(new int[]{1, 1, 1, 1, 0, 1}, "[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1]");
 
-        assertThrows(
-                NoSuchElementException.class,
-                () -> Iterators.intArrayThreeTimesIterator(new int[]{}).next());
+        final Iterator<Integer> emptyIterator = Iterators.intArrayThreeTimesIterator(new int[]{});
+        assertThrows(NoSuchElementException.class, emptyIterator::next);
 
         final Iterator<Integer> itr = Iterators.intArrayThreeTimesIterator(new int[]{1});
         itr.next();
@@ -54,9 +52,8 @@ public class IteratorsTest {
         testCase5IntIterator(new int[]{}, "[]");
         testCase5IntIterator(new int[]{1, 1, 1, 1, 0, 1}, "[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1]");
 
-        assertThrows(
-                NoSuchElementException.class,
-                () -> Iterators.intArrayFiveTimesIterator(new int[]{}).next());
+        final Iterator<Integer> emptyIterator = Iterators.intArrayFiveTimesIterator(new int[]{});
+        assertThrows(NoSuchElementException.class, emptyIterator::next);
 
         final Iterator<Integer> itr = Iterators.intArrayFiveTimesIterator(new int[]{1});
         itr.next();
