@@ -12,7 +12,11 @@ public class Event {
     public Event(final Type type, final String branch, final List<Commit> commits) {
         this.type = type;
         this.branch = branch;
-        this.commits = commits;
+        if (commits != null) {
+            this.commits = commits;
+        } else {
+            this.commits = List.of();
+        }
     }
 
     Type type() {

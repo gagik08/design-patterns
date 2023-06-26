@@ -98,14 +98,13 @@ class ContemporaryDisneyPlot implements Plot {
 
     @Override
     public String toString() {
-        String builder = hero.name().trim() + " feels a bit awkward and uncomfortable. " +
+        return hero.name().trim() + " feels a bit awkward and uncomfortable. " +
                 "But personal issues fades, when a big trouble comes - " + epicCrisis.name().trim() + ". " +
                 hero.name().trim() + " stands up against it, but with no success at first." +
                 "But putting self together and help of friends, including spectacular funny " +
                 funnyFriend.name().trim() + " " +
                 "restore the spirit and " + hero.name().trim() +
                 " overcomes the crisis and gains gratitude and respect";
-        return builder;
     }
 }
 

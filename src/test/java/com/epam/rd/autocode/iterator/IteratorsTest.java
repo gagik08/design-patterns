@@ -26,7 +26,7 @@ public class IteratorsTest {
         final Iterator<Integer> itr = Iterators.intArrayTwoTimesIterator(new int[]{1});
         itr.next();
         itr.next();
-        assertThrows(NoSuchElementException.class, () -> itr.next());
+        assertThrows(NoSuchElementException.class, itr::next);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class IteratorsTest {
         itr.next();
         itr.next();
         itr.next();
-        assertThrows(NoSuchElementException.class, () -> itr.next());
+        assertThrows(NoSuchElementException.class, itr::next);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class IteratorsTest {
         itr.next();
         itr.next();
         itr.next();
-        assertThrows(NoSuchElementException.class, () -> itr.next());
+        assertThrows(NoSuchElementException.class, itr::next);
     }
 
 

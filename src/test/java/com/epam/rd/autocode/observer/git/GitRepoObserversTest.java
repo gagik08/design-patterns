@@ -116,11 +116,13 @@ public class GitRepoObserversTest {
         );
         assertEquals(
                 "[Event[MERGE, master, " +
-                        "[Commit[Johnny Mnemonic, [Added README.md, Added project description]]," +
+                        "[Commit[Johnny Mnemonic, [Added README.txt]]," +
+                        " Commit[Johnny Mnemonic, [Added README.md, Added project description]]," +
                         " Commit[Johnny Mnemonic, [Added functional requirements]]," +
                         " Commit[Johnny Silverhand, [Added cyberanarchy manifest]]]]]",
                 mergeMasterBranch.caughtEvents().toString()
         );
+
 
     }
 
@@ -258,11 +260,13 @@ public class GitRepoObserversTest {
         );
         assertEquals(
                 "[Event[MERGE, master, " +
-                        "[Commit[Johnny Mnemonic, [Added README.md, Added project description]]," +
+                        "[Commit[Johnny Mnemonic, [Added README.txt]]," +
+                        " Commit[Johnny Mnemonic, [Added README.md, Added project description]]," +
                         " Commit[Johnny Mnemonic, [Added functional requirements]]," +
-                        " Commit[Johnny Silverhand, [Added cyberanarchy manifest]]]]]",
+                        " Commit[Johnny Silverhand, [Added cyberanarchy manifest]]]]] , Event[MERGE, master, [Commit[Johnny Mnemonic, [Added README.txt]], Commit[Johnny Mnemonic, [Added README.md, Added project description]], Commit[Johnny Mnemonic, [Added functional requirements]], Commit[Johnny Silverhand, [Added cyberanarchy manifest]]]]]",
                 mergeMasterBranch.caughtEvents().toString()
         );
+
 
         assertEquals(
                 "[Event[MERGE, dev-readme, [Commit[CrashOverrider, [Added full implementation]]]]]",

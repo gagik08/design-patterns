@@ -4,11 +4,12 @@ import java.util.*;
 
 public class CardDealingStrategies {
     public static CardDealingStrategy texasHoldemCardDealingStrategy() {
+        final String PLAYER_PREFIX = "Player ";
         return (deck, players) -> {
             Map<String, List<Card>> stacks = new LinkedHashMap<>();
             stacks.put("Community", new ArrayList<>());
             for (int i = 1; i <= players; i++) {
-                stacks.put("Player " + i, new ArrayList<>());
+                stacks.put(PLAYER_PREFIX + i, new ArrayList<>());
             }
             stacks.put("Remaining", new ArrayList<>());
 
@@ -16,7 +17,7 @@ public class CardDealingStrategies {
             for (int round = 1; round <= 2; round++) {
                 for (int i = 1; i <= players; i++) {
                     Card card = deck.dealCard();
-                    stacks.get("Player " + i).add(card);
+                    stacks.get(PLAYER_PREFIX + i).add(card);
                 }
             }
 
@@ -37,10 +38,11 @@ public class CardDealingStrategies {
     }
 
     public static CardDealingStrategy classicPokerCardDealingStrategy() {
+        final String PLAYER_PREFIX = "Player ";
         return (deck, players) -> {
             Map<String, List<Card>> stacks = new LinkedHashMap<>();
             for (int i = 1; i <= players; i++) {
-                stacks.put("Player " + i, new ArrayList<>());
+                stacks.put(PLAYER_PREFIX + i, new ArrayList<>());
             }
             stacks.put("Remaining", new ArrayList<>());
 
@@ -48,7 +50,7 @@ public class CardDealingStrategies {
             for (int round = 1; round <= 5; round++) {
                 for (int i = 1; i <= players; i++) {
                     Card card = deck.dealCard();
-                    stacks.get("Player " + i).add(card);
+                    stacks.get(PLAYER_PREFIX + i).add(card);
                 }
             }
 
@@ -63,13 +65,12 @@ public class CardDealingStrategies {
     }
 
     public static CardDealingStrategy bridgeCardDealingStrategy() {
+        final String PLAYER_PREFIX = "Player ";
         return (deck, players) -> {
             Map<String, List<Card>> stacks = new LinkedHashMap<>();
             for (int i = 1; i <= players; i++) {
-                stacks.put("Player " + i, new ArrayList<>());
+                stacks.put(PLAYER_PREFIX + i, new ArrayList<>());
             }
-
-            // Initialize an empty list for the "Remaining" stack
             stacks.put("Remaining", new ArrayList<>());
 
             int cardsPerPlayer = 13;
@@ -78,7 +79,7 @@ public class CardDealingStrategies {
             for (int round = 1; round <= cardsPerPlayer; round++) {
                 for (int i = 1; i <= players; i++) {
                     Card card = deck.dealCard();
-                    stacks.get("Player " + i).add(card);
+                    stacks.get(PLAYER_PREFIX + i).add(card);
                 }
             }
 
@@ -91,13 +92,12 @@ public class CardDealingStrategies {
         };
     }
 
-
-
-    public static CardDealingStrategy foolCardDealingStrategy(){
+    public static CardDealingStrategy foolCardDealingStrategy() {
+        final String PLAYER_PREFIX = "Player ";
         return (deck, players) -> {
             Map<String, List<Card>> stacks = new LinkedHashMap<>();
             for (int i = 1; i <= players; i++) {
-                stacks.put("Player " + i, new ArrayList<>());
+                stacks.put(PLAYER_PREFIX + i, new ArrayList<>());
             }
             stacks.put("Trump card", new ArrayList<>());
             stacks.put("Remaining", new ArrayList<>());
@@ -106,7 +106,7 @@ public class CardDealingStrategies {
             for (int round = 1; round <= 6; round++) {
                 for (int i = 1; i <= players; i++) {
                     Card card = deck.dealCard();
-                    stacks.get("Player " + i).add(card);
+                    stacks.get(PLAYER_PREFIX + i).add(card);
                 }
             }
 
@@ -123,5 +123,4 @@ public class CardDealingStrategies {
             return stacks;
         };
     }
-
 }

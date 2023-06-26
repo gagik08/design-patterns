@@ -5,7 +5,12 @@ import java.util.List;
 
 public class Decorators {
     public static <T> List<T> evenIndexElementsSubList(List<T> sourceList) {
-        return (List<T>) new EvenIndexElementsSubListDecorator<>(sourceList);
+        return new EvenIndexElementsSubListDecorator<>(sourceList);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     private static class EvenIndexElementsSubListDecorator<T> extends AbstractList<T> {
