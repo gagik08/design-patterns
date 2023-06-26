@@ -1,11 +1,28 @@
 package com.epam.rd.autocode.decorator;
 
+import java.util.AbstractList;
 import java.util.List;
 
 public class Decorators {
-    public static List<String> evenIndexElementsSubList(List<String> sourceList) {
-        throw new UnsupportedOperationException();
+    public static <T> List<T> evenIndexElementsSubList(List<T> sourceList) {
+        return (List<T>) new EvenIndexElementsSubListDecorator<>(sourceList);
     }
 
+    private static class EvenIndexElementsSubListDecorator<T> extends AbstractList<T> {
+        private final List<T> sourceList;
 
+        public EvenIndexElementsSubListDecorator(List<T> sourceList) {
+            this.sourceList = sourceList;
+        }
+
+        @Override
+        public T get(int index) {
+            return sourceList.get(index * 2);
+        }
+
+        @Override
+        public int size() {
+            return (sourceList.size() + 1) / 2;
+        }
+    }
 }
