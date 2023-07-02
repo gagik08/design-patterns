@@ -12,14 +12,14 @@ public class Event {
     public Event(final Type type, final String branch, final List<Commit> commits) {
         this.type = type;
         this.branch = branch;
-        this.commits = Objects.requireNonNullElseGet(commits, List::of);
+        this.commits = commits;
     }
 
-    Type type() {
+    public Type type() {
         return type;
     }
 
-    String branch() {
+    public String branch() {
         return branch;
     }
 
@@ -47,7 +47,7 @@ public class Event {
         return result;
     }
 
-    enum Type {
+    public enum Type {
         COMMIT,
         MERGE
     }

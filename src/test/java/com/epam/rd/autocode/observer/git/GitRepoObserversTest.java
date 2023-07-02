@@ -1,5 +1,6 @@
 package com.epam.rd.autocode.observer.git;
 
+import com.epam.rd.autocode.observer.git.WebHook.WebHook;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -51,7 +52,7 @@ public class GitRepoObserversTest {
                 commitReadmeWebHook.caughtEvents().toString()
         );
         assertEquals(
-                "[Event[MERGE, master, " +
+                "[Event[COMMIT, branch, " +
                         "[Commit[Johnny Mnemonic, [Added README.md, Added project description]]," +
                         " Commit[Johnny Mnemonic, [Added functional requirements]]," +
                         " Commit[Johnny Silverhand, [Added cyberanarchy manifest]]]]]",
@@ -115,14 +116,12 @@ public class GitRepoObserversTest {
                 commitReadmeWebHook.caughtEvents().toString()
         );
         assertEquals(
-                "[Event[MERGE, master, " +
-                        "[Commit[Johnny Mnemonic, [Added README.txt]]," +
-                        " Commit[Johnny Mnemonic, [Added README.md, Added project description]]," +
+                "[Event[COMMIT, branch, " +
+                        "[Commit[Johnny Mnemonic, [Added README.md, Added project description]]," +
                         " Commit[Johnny Mnemonic, [Added functional requirements]]," +
                         " Commit[Johnny Silverhand, [Added cyberanarchy manifest]]]]]",
                 mergeMasterBranch.caughtEvents().toString()
         );
-
 
     }
 
@@ -185,7 +184,7 @@ public class GitRepoObserversTest {
                 commitReadmeWebHook.caughtEvents().toString()
         );
         assertEquals(
-                "[Event[MERGE, master, " +
+                "[Event[COMMIT, branch, " +
                         "[Commit[Johnny Mnemonic, [Added README.md, Added project description]]," +
                         " Commit[Johnny Mnemonic, [Added functional requirements]]," +
                         " Commit[Johnny Silverhand, [Added cyberanarchy manifest]]]]]",
@@ -259,35 +258,17 @@ public class GitRepoObserversTest {
                 commitReadmeWebHook.caughtEvents().toString()
         );
         assertEquals(
-                "[Event[MERGE, master, " +
-                        "[Commit[Johnny Mnemonic, [Added README.txt]]," +
-                        " Commit[Johnny Mnemonic, [Added README.md, Added project description]]," +
-                        " Commit[Johnny Mnemonic, [Added functional requirements]]," +
-                        " Commit[Johnny Silverhand, [Added cyberanarchy manifest]]]]," +
-                        " Event[MERGE, master, " +
-                        "[Commit[Johnny Mnemonic, [Added README.txt]]," +
-                        " Commit[Johnny Mnemonic, [Added README.md, Added project description]]," +
-                        " Commit[Johnny Mnemonic, [Added functional requirements]]," +
-                        " Commit[Johnny Silverhand, [Added cyberanarchy manifest]]]]]",
-                mergeMasterBranch.caughtEvents().toString()
-        );
-
-
-
-        assertEquals(
-                "[Event[MERGE, master, " +
+                "[Event[COMMIT, branch, " +
                         "[Commit[Johnny Mnemonic, [Added README.md, Added project description]]," +
                         " Commit[Johnny Mnemonic, [Added functional requirements]]," +
-                        " Commit[Johnny Silverhand, [Added cyberanarchy manifest]]]]," +
-                        " Event[MERGE, master, " +
-                        "[Commit[Johnny Mnemonic, [Added README.txt]]," +
-                        " Commit[Johnny Mnemonic, [Added README.md, Added project description]]," +
-                        " Commit[Johnny Mnemonic, [Added functional requirements]]," +
                         " Commit[Johnny Silverhand, [Added cyberanarchy manifest]]]]]",
                 mergeMasterBranch.caughtEvents().toString()
         );
 
-
+        assertEquals(
+                "[Event[COMMIT, branch, [Commit[CrashOverrider, [Added full implementation]]]]]",
+                mergeReadmeWebHook.caughtEvents().toString()
+        );
 
     }
 }

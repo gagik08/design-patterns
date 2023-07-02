@@ -1,19 +1,19 @@
 package com.epam.rd.autocode.observer.git;
 
+import com.epam.rd.autocode.observer.git.WebHook.CommitToBranchWebHook;
+import com.epam.rd.autocode.observer.git.WebHook.MergeToBranchWebHook;
+import com.epam.rd.autocode.observer.git.WebHook.WebHook;
+
 public class GitRepoObservers {
-    private GitRepoObservers() {
-        // Private constructor to hide the implicit public one
-    }
     public static Repository newRepository() {
-        return new GitRepository();
+        return new RepositoryImpl();
     }
 
     public static WebHook mergeToBranchWebHook(String branchName) {
-        return new MergeWebHook(branchName);
+        return new MergeToBranchWebHook(branchName);
     }
 
     public static WebHook commitToBranchWebHook(String branchName) {
-        return new CommitWebHook(branchName);
+        return new CommitToBranchWebHook(branchName);
     }
 }
-

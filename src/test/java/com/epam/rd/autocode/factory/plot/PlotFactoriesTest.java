@@ -1,5 +1,6 @@
 package com.epam.rd.autocode.factory.plot;
 
+import com.epam.rd.autocode.factory.factories.PlotFactory;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

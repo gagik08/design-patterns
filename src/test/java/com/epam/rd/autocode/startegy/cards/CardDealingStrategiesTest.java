@@ -1,5 +1,6 @@
 package com.epam.rd.autocode.startegy.cards;
 
+import com.epam.rd.autocode.startegy.cards.strategies.CardDealingStrategy;
 import org.junit.Test;
 
 import java.util.ArrayList;
