@@ -2,7 +2,11 @@ package com.epam.rd.autocode.observer.git;
 
 import com.epam.rd.autocode.observer.git.WebHook.WebHook;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RepositoryImpl implements Repository{
     private final List<WebHook> webHooks;
@@ -21,43 +25,54 @@ public class RepositoryImpl implements Repository{
     @Override
     public Commit commit(String branch, String author, String[] changes) {
         Commit commit = new Commit(author, changes);
+        Event event = new Event(Event.Type.COMMIT, branch, Collections.singletonList(commit));
+
         if (!branches.containsKey(branch)) {
             branches.put(branch, new ArrayList<>());
         }
+
         branches.get(branch).add(commit);
-        Event event = new Event(Event.Type.COMMIT, branch, Collections.singletonList(commit));
-        notifyWebHooks(event);
+
+        for (WebHook webHook : webHooks) {
+            if (webHook.branch().equals(branch) && webHook.type() == Event.Type.COMMIT) {
+                webHook.onEvent(event);
+            }
+        }
+
         return commit;
     }
 
     @Override
     public void merge(String sourceBranch, String targetBranch) {
-        List<Commit> sourceCommits = branches.get(sourceBranch);
-        if (sourceCommits == null) {
-            throw new IllegalArgumentException("Source branch does not exist");
-        }
+        List<WebHook> webHooksForSourceBranch = getWebHooksForBranch(sourceBranch);
+        List<WebHook> webHooksForTargetBranch = getWebHooksForBranch(targetBranch);
+        List<Commit> mergedCommits = new ArrayList<>();
 
-        List<Commit> targetCommits = branches.get(targetBranch);
-        if (targetCommits == null) {
-            targetCommits = new ArrayList<>();
-            branches.put(targetBranch, targetCommits);
-        }
+        for (WebHook mergeWebHook : webHooksForTargetBranch) {
+            if (mergeWebHook.type() == Event.Type.MERGE) {
+                for (WebHook commitWebHook : webHooksForSourceBranch) {
+                    if (commitWebHook.branch().equals(sourceBranch) && commitWebHook.type() == Event.Type.COMMIT) {
+                        List<Event> commitEvents = commitWebHook.caughtEvents();
+                        for (Event event : commitEvents) {
+                            List<Commit> commits = event.commits();
+                            mergedCommits.addAll(commits);
+                        }
+                    }
+                }
 
-        for (Commit commit : sourceCommits) {
-            if (!targetCommits.contains(commit)) {
-                targetCommits.add(commit);
+                Event event = new Event(Event.Type.MERGE, targetBranch, mergedCommits);
+                mergeWebHook.onEvent(event);
             }
         }
-
-        Event event = new Event(Event.Type.MERGE, targetBranch, new ArrayList<>(targetCommits));
-        notifyWebHooks(event);
     }
 
-
-
-    private void notifyWebHooks(Event event) {
+    private List<WebHook> getWebHooksForBranch(String branch) {
+        List<WebHook> filteredWebHooks = new ArrayList<>();
         for (WebHook webHook : webHooks) {
-            webHook.notify(event);
+            if (webHook.branch().equals(branch)) {
+                filteredWebHooks.add(webHook);
+            }
         }
+        return filteredWebHooks;
     }
 }

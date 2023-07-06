@@ -5,6 +5,7 @@ import com.epam.rd.autocode.observer.git.Event;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WebHookImpl implements WebHook {
     private final String branch;
@@ -29,7 +30,7 @@ public class WebHookImpl implements WebHook {
 
     @Override
     public List<Event> caughtEvents() {
-        return events;
+        return events.stream().distinct().collect(Collectors.toList());
     }
 
     @Override
