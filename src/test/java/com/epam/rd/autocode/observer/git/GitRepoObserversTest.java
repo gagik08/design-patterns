@@ -1,6 +1,5 @@
 package com.epam.rd.autocode.observer.git;
 
-import com.epam.rd.autocode.observer.git.WebHook.WebHook;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

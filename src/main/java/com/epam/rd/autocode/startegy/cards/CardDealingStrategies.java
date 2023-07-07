@@ -1,7 +1,5 @@
 package com.epam.rd.autocode.startegy.cards;
 
-import com.epam.rd.autocode.startegy.cards.strategies.*;
-
 public class CardDealingStrategies {
     public static CardDealingStrategy texasHoldemCardDealingStrategy() {
         return new TexasHoldemCardDealingStrategy();

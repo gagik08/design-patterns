@@ -1,7 +1,5 @@
-package com.epam.rd.autocode.observer.git.WebHook;
+package com.epam.rd.autocode.observer.git;
 
-
-import com.epam.rd.autocode.observer.git.Event;
 
 import java.util.ArrayList;
 import java.util.List;

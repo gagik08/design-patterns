@@ -1,4 +1,4 @@
-package com.epam.rd.autocode.factory.plot;
+package com.epam.rd.autocode.factory;
 
 import com.epam.rd.autocode.Named;
 

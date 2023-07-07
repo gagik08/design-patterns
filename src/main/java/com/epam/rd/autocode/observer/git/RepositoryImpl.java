@@ -1,12 +1,6 @@
 package com.epam.rd.autocode.observer.git;
 
-import com.epam.rd.autocode.observer.git.WebHook.WebHook;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RepositoryImpl implements Repository{
     private final List<WebHook> webHooks;

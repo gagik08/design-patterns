@@ -1,9 +1,10 @@
 package com.epam.rd.autocode.factory.factories;
 
+import com.epam.rd.autocode.factory.EpicCrisis;
+import com.epam.rd.autocode.factory.Plot;
 import com.epam.rd.autocode.factory.plot.Character;
-import com.epam.rd.autocode.factory.plot.EpicCrisis;
-import com.epam.rd.autocode.factory.plot.Plot;
-import com.epam.rd.autocode.factory.plots.ContemporaryDisneyPlot;
+import com.epam.rd.autocode.factory.plot.ContemporaryDisneyPlot;
+import com.epam.rd.autocode.factory.plot.PlotFactory;
 
 public class ContemporaryDisneyPlotFactory implements PlotFactory {
     private final Character hero;

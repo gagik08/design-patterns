@@ -1,14 +1,11 @@
-package com.epam.rd.autocode.startegy.cards.strategies;
-
-import com.epam.rd.autocode.startegy.cards.Card;
-import com.epam.rd.autocode.startegy.cards.Deck;
+package com.epam.rd.autocode.startegy.cards;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ClassicPokerCardDealingStrategy implements CardDealingStrategy {
+public class BridgeCardDealingStrategy implements CardDealingStrategy {
     @Override
     public Map<String, List<Card>> dealStacks(Deck deck, int players) {
         Map<String, List<Card>> stacks = new LinkedHashMap<>();
@@ -17,19 +14,21 @@ public class ClassicPokerCardDealingStrategy implements CardDealingStrategy {
         }
         stacks.put("Remaining", new ArrayList<>());
 
+        int cardsPerPlayer = 13;
+
         // Deal cards to players
-        for (int round = 1; round <= 5; round++) {
+        for (int round = 1; round <= cardsPerPlayer; round++) {
             for (int i = 1; i <= players; i++) {
                 Card card = deck.dealCard();
                 stacks.get("Player " + i).add(card);
             }
         }
 
-        // Deal remaining cards to the "Remaining" stack
-        while (deck.size() > 0) {
-            Card card = deck.dealCard();
-            stacks.get("Remaining").add(card);
+        // Remove the "Remaining" stack if it's empty
+        if (stacks.get("Remaining").isEmpty()) {
+            stacks.remove("Remaining");
         }
+
         return stacks;
     }
 }

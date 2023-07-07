@@ -1,6 +1,4 @@
-package com.epam.rd.autocode.observer.git.WebHook;
-
-import com.epam.rd.autocode.observer.git.Event;
+package com.epam.rd.autocode.observer.git;
 
 public class CommitToBranchWebHook extends WebHookImpl {
     public CommitToBranchWebHook(String branchName) {
